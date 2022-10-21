@@ -1,3 +1,3 @@
-FROM tomcat:latest
+FROM tomcat:8
 
-ADD /target/*.war $CATALINA_HOME/webapps/
+ADD target/*.war /usr/local/tomcat/webapps/
