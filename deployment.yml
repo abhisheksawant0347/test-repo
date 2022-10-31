@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: Argo-deployment
   labels:
-    app: my-nginx1
+    app: abhisheksawant10/test-argocd-helloworld1:latest
 spec:
   selector:
     matchLabels:
-      app: my-nginx1
+      app: abhisheksawant10/test-argocd-helloworld1:latest
   replicas: 1
   template:
     metadata:
       labels:
-        app: my-nginx1
+        app: abhisheksawant10/test-argocd-helloworld1:latest
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: Argo-test
+        image: abhisheksawant10/test-argocd-helloworld1:latest
         ports:
         - containerPort: 80
