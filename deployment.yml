@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: Argo-deployment
   labels:
-    app: abhisheksawant10/test-argocd-helloworld1:latest
+    app: test-argocd-helloworld1
 spec:
   selector:
     matchLabels:
-      app: abhisheksawant10/test-argocd-helloworld1:latest
+      app: test-argocd-helloworld1
   replicas: 1
   template:
     metadata:
       labels:
-        app: abhisheksawant10/test-argocd-helloworld1:latest
+        app: test-argocd-helloworld1
     spec:
       containers:
       - name: Argo-test
