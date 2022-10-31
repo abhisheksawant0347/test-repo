@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Argo-deployment
+  name: argo-deployment
   labels:
     app: test-argocd-helloworld1
 spec:
