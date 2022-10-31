@@ -15,7 +15,7 @@ spec:
         app: test-argocd-helloworld1
     spec:
       containers:
-      - name: Argo-test
+      - name: argo-test
         image: abhisheksawant10/test-argocd-helloworld1:latest
         ports:
         - containerPort: 80
