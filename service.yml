@@ -3,10 +3,10 @@ kind: Service
 metadata:
  name: argocd-svc 
  labels:
-   app: abhisheksawant10/test-argocd-helloworld1:latest
+   app: test-argocd-helloworld1
 spec:
   selector:
-    app: abhisheksawant10/test-argocd-helloworld1:latest
+    app: test-argocd-helloworld1
   type: NodePort
   ports:
   - nodePort: 30083
