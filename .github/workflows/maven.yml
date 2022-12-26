@@ -28,31 +28,16 @@ jobs:
       run: |
         cd target
         ls -a
+        
+    - name : Docker image
+      run: |
+        docker build -t test:latest .
+        docker images
       
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: snyk/actions/setup@master
-      - uses: actions/setup-go@v1
-        with:
-          go-version: '1.13'
-      - name: Snyk monitor the vulnerabilities
-        run: snyk test
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      
  
-  security1:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-      - uses: snyk/actions/setup@master
-      - uses: actions/setup-go@v1
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: monitor    
+ 
+   
         
       
   
