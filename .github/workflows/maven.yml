@@ -7,38 +7,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-
-  Snyk-test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/maven@master
-      continue-on-error: true 
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --severity-threshold=low
-   
-  Snyk-Code-Scanning:
-    needs: Snyk-test
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/maven@master
-      continue-on-error: true 
-      env:
-         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-         args: --sarif-file-output=snyk.sarif
-    - name: Upload result to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: snyk.sarif
   
   Build-Docker-Images:
-    needs: Snyk-Code-Scanning
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -63,8 +33,9 @@ jobs:
            snyk auth ${{ secrets.SNYK_TOKEN }}
            snyk container test test:latest --json-file-output=SnykDockerImage.json
       continue-on-error: true   
-    - name: Snyk output json report 
+    - name: Generate Snyk Docker Image json report into Html format
       run: |
+           npm install snyk-to-html -g
            ls -la
            snyk-to-html -i SnykDockerImage.json -o SnykDockerImage.html
            ls -la
