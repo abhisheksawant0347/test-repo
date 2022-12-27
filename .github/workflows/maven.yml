@@ -9,7 +9,6 @@ on:
 jobs:
 
   Snyk-test:
-    
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -57,15 +56,11 @@ jobs:
     
       run: |
           ls -la
-          docker build -t devsecops:latest .
+          docker build -t test:latest .
           docker images
     - name: Snyk Login
       run: |
            docker images
            npm install snyk -g
            snyk auth ${{ secrets.SNYK_TOKEN }}
-           snyk container test
-	   
-            
-              
-  
+           snyk container test  
