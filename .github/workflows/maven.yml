@@ -55,12 +55,10 @@ jobs:
     - name: Docker image build
     
       run: |
-          ls -la
           docker build -t test:latest .
           docker images
     - name: Snyk Login
       run: |
-           docker images
            npm install snyk -g
            snyk auth ${{ secrets.SNYK_TOKEN }}
-           snyk container test  
+           snyk container test test:latest
