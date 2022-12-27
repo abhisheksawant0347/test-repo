@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install Snyk latest CLI
+      run: |
+         npm install snyk -g
+         snyk --version
+    - name: Snyk test command
+      run: |
+         snyk test
     - uses: actions/checkout@v3
     - name: Set up JDK 11
       uses: actions/setup-java@v3
@@ -27,38 +34,9 @@ jobs:
       run: |
         cd target
         ls -a
-        
-    - name : Docker image
-      run: |
-        docker build -t test:latest .
-        docker images  
  
-  Snyk-test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/maven@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        args: --severity-threshold=low
-   
-  security:
-    runs-on: ubuntu-latest
-    steps:
-     - uses: actions/checkout@master
-     - name: Run Snyk to check for vulnerabilities
-       uses: snyk/actions/maven@master
-       continue-on-error: true 
-       env:
-         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-       with:
-         args: --sarif-file-output=snyk.sarif
-     - name: Upload result to GitHub Code Scanning
-       uses: github/codeql-action/upload-sarif@v2
-       with:
-         sarif_file: snyk.sarif
+ 
+ 
       
   
 
