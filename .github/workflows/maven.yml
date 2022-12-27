@@ -19,6 +19,7 @@ jobs:
          snyk --version
     - name: Snyk test command
       run: |
+         snyk auth ${{ secrets.SNYK_TOKEN }}
          snyk test
     - uses: actions/checkout@v3
     - name: Set up JDK 11
