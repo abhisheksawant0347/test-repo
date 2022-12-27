@@ -61,5 +61,10 @@ jobs:
       run: |
            npm install snyk -g
            snyk auth ${{ secrets.SNYK_TOKEN }}
-           snyk container test test:latest
+           snyk container test test:latest --json-file-output=SnykDockerImage.json
+           snyk-to-html -i SnykDockerImage.json -o SnykDockerImage.html
       continue-on-error: true
+
+    
+      
+      
