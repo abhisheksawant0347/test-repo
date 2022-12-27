@@ -1,5 +1,4 @@
 
-
 name: Java CI with Maven
 
 on:
@@ -32,15 +31,26 @@ jobs:
     - name : Docker image
       run: |
         docker build -t test:latest .
-        docker images
-     
+        docker images  
+ 
+  Snyk-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/maven@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --severity-threshold=low
+   
   security:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/checkout@master
      - name: Run Snyk to check for vulnerabilities
        uses: snyk/actions/maven@master
-       continue-on-error: true # To make sure that SARIF upload gets called
+       continue-on-error: true 
        env:
          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
        with:
