@@ -36,6 +36,7 @@ jobs:
 
         run: |
            mvn -B package --file pom.xml
+           ls -la
            docker build -t $IMAGE_NAME:latest . 
         
       - name: Configure Docker Client
