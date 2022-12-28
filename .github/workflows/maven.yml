@@ -3,11 +3,14 @@ name: Java CI with Maven
 on:
  workflow_dispatch:
    inputs:
-     name:
+     DockerImageName:
        description: 'docker image name'
        default: 'devsecops'
-       required: true   
-       
+       required: true 
+     tag:
+       description: docker tag
+       default: latest
+       required: true
 jobs:
   
   Build-Docker-Images:
@@ -27,13 +30,13 @@ jobs:
     - name: Docker image build
     
       run: |
-          docker build -t ${{github.event.inputs.name}}:latest .
+          docker build -t ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} .
           docker images
     - name: Snyk Login
       run: |
            npm install snyk -g
            snyk auth ${{ secrets.SNYK_TOKEN }}
-           snyk container test ${{github.event.inputs.name}}:latest --json-file-output=SnykDockerImage.json
+           snyk container test ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} --json-file-output=SnykDockerImage.json
       continue-on-error: true   
     - name: Generate Snyk Docker Image json report into Html format
       run: |
@@ -41,6 +44,13 @@ jobs:
            ls -la
            snyk-to-html -i SnykDockerImage.json -o SnykDockerImage.html
            ls -la
+           mkdir download-artifacts
+           
+    - name: Upload Artifact GitHub Action
+      uses: actions/upload-artifact@v2
+      with: 
+        name: Artifact
+        path: download-artifacts
      
 
     
