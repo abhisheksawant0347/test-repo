@@ -51,20 +51,5 @@ jobs:
         run: |-
           docker tag $IMAGE_NAME gcr.io/$PROJECT_ID/$IMAGE_NAME
           docker push gcr.io/$PROJECT_ID/$IMAGE_NAME 
-          
-      - name: Extract metadata (tags, labels) for Docker GHCR
-        env:
-          REGISTRY: ghcr.io
-          IMAGE_NAME: ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}
-        id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} #create ghcr image format within as id called meta
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc #push docker image to ghcr
-        with:
-          context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+  
+    
