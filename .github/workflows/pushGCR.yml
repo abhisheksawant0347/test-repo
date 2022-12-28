@@ -37,7 +37,7 @@ jobs:
         run: |
            mvn -B package --file pom.xml
            ls -la
-           docker build -t $IMAGE_NAME:latest . 
+           docker build -t $IMAGE_NAME . 
         
       - name: Configure Docker Client
         run:  |-
@@ -49,8 +49,8 @@ jobs:
           PROJECT_ID: cicd-372106
         #tag docker image to gcr image format then push to gcr
         run: |-
-          docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest 
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest 
+          docker tag $IMAGE_NAME gcr.io/$PROJECT_ID/$IMAGE_NAME
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME 
           
       - name: Extract metadata (tags, labels) for Docker GHCR
         env:
