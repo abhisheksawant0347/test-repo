@@ -49,7 +49,7 @@ jobs:
           PROJECT_ID: cicd-372106 
         #tag docker image to gcr image format then push to gcr
         run: |-
-          docker tag $IMAGE_NAME gcr.io/$PROJECT_ID/$IMAGE_NAME
-          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME 
+          docker tag $IMAGE_NAME gcr.io/$PROJECT_ID/$IMAGE_NAME:latest1
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest1
   
     
