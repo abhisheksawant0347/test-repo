@@ -31,7 +31,7 @@ jobs:
           
       - name: Build Docker Image
         env:
-          IMAGE_NAME: linux_tweet_app #create env called IMAGE_NAME consisted of actual name of Docker Image after we build
+          IMAGE_NAME: ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} #create env called IMAGE_NAME consisted of actual name of Docker Image after we build
           PROJECT_ID: cicd-372106
         run: docker build -t $IMAGE_NAME:latest . #build the docker image
         
@@ -41,7 +41,7 @@ jobs:
         
       - name: Push Docker Image to Container Registry GCR
         env: 
-          IMAGE_NAME: linux_tweet_app
+          IMAGE_NAME: ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}
           PROJECT_ID: cicd-372106
         #tag docker image to gcr image format then push to gcr
         run: |-
@@ -51,7 +51,7 @@ jobs:
       - name: Extract metadata (tags, labels) for Docker GHCR
         env:
           REGISTRY: ghcr.io
-          IMAGE_NAME: ${{ github.repository }}
+          IMAGE_NAME: ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
