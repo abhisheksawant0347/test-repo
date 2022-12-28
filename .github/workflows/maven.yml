@@ -1,11 +1,13 @@
 name: Java CI with Maven
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
+ workflow_dispatch:
+   inputs:
+     name:
+       description: 'docker image name'
+       default: 'devsecops'
+       required: true   
+       
 jobs:
   
   Build-Docker-Images:
@@ -25,13 +27,13 @@ jobs:
     - name: Docker image build
     
       run: |
-          docker build -t test:latest .
+          docker build -t ${{github.event.inputs.name}}:latest .
           docker images
     - name: Snyk Login
       run: |
            npm install snyk -g
            snyk auth ${{ secrets.SNYK_TOKEN }}
-           snyk container test test:latest --json-file-output=SnykDockerImage.json
+           snyk container test ${{github.event.inputs.name}}:latest --json-file-output=SnykDockerImage.json
       continue-on-error: true   
     - name: Generate Snyk Docker Image json report into Html format
       run: |
