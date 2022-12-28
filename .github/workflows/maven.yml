@@ -28,7 +28,6 @@ jobs:
       run: mvn -B package --file pom.xml
   
     - name: Docker image build
-    
       run: |
           docker build -t ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} .
           docker images
@@ -41,10 +40,10 @@ jobs:
     - name: Generate Snyk Docker Image json report into Html format
       run: |
            npm install snyk-to-html -g
-           ls -la
+           mkdir download-artifacts
+           cd download-artifacts
            snyk-to-html -i SnykDockerImage.json -o SnykDockerImage.html
            ls -la
-           mkdir download-artifacts
            
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v2
