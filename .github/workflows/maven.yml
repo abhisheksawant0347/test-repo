@@ -30,7 +30,7 @@ jobs:
           ls -la
           cd target
           ls -la
-          mkdir download-artifacts && cp /target/*.jar download-artifacts
+          mkdir download-artifacts && cp /target/*.war download-artifacts
           
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v3.1.1
