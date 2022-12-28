@@ -27,7 +27,9 @@ jobs:
     - name: Build with Maven
       run: |
           mvn -B package --file pom.xml
-          mkdir download-artifacts && cp target/*.jar download-artifacts
+          ls -la
+          cd target
+          mkdir download-artifacts && cp /target/*.jar download-artifacts
           
     - name: Upload Artifact GitHub Action
       uses: actions/upload-artifact@v3.1.1
