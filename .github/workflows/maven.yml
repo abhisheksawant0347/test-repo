@@ -24,7 +24,9 @@ jobs:
       with:
         args: --severity-threshold=low
     - run: |
+         npm install snyk -g
          npm install snyk-to-html -g
+         snyk auth ${{ secrets.SNYK_TOKEN }}
          snyk test --json-file-output=SnykTestReport.json
          snyk-to-html -i SnykTestReport.json -o SnykTestReport.html
          ls -la
