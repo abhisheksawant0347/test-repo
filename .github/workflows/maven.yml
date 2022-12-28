@@ -55,7 +55,7 @@ jobs:
         
   Build-Docker-Images:
     runs-on: ubuntu-latest
-	   needs: Snyk-Code-Scanning
+    needs: Snyk-Code-Scanning
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 11
