@@ -26,6 +26,7 @@ jobs:
     - run: |
          npm install snyk-to-html -g
          snyk code test --json | snyk-to-html -o SnykTestReport.html 
+         ls -la
     - run: mkdir SnykTestReport && cp SnykTestReport.html SnykTestReport
     - uses: actions/upload-artifact@v3 
       with:
