@@ -25,7 +25,8 @@ jobs:
         args: --severity-threshold=low
     - run: |
          npm install snyk-to-html -g
-         snyk code test --json | snyk-to-html -o SnykTestReport.html 
+         snyk test --json-file-output=SnykTestReport.json
+         snyk-to-html -i SnykTestReport.json -o SnykTestReport.html
          ls -la
     - run: mkdir SnykTestReport && cp SnykTestReport.html SnykTestReport
     - uses: actions/upload-artifact@v3 
