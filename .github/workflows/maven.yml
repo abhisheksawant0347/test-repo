@@ -12,7 +12,43 @@ on:
        default: latest
        required: true
 jobs:
-  
+  Snyk-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/maven@master
+      continue-on-error: true 
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        args: --severity-threshold=low
+    - run: |
+         npm install snyk-to-html -g
+         snyk code test --json | snyk-to-html -o SnykTestReport.html 
+    - run: mkdir SnykTestReport && cp SnykTestReport.html SnykTestReport
+    - uses: actions/upload-artifact@v3 
+      with:
+        name: Snyk Test
+        path: SnykTestReport
+          
+  Snyk-Code-Scanning:
+    needs: Snyk-test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/maven@master
+      continue-on-error: true 
+      env:
+         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+         args: --sarif-file-output=snyk.sarif
+    - name: Upload result to GitHub Code Scanning
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: snyk.sarif
+     
   Build-Docker-Images:
     runs-on: ubuntu-latest
     steps:
