@@ -25,7 +25,16 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+          mvn -B package --file pom.xml
+          mkdir download-artifacts
+          cd download-artifacts
+      
+    - name: Upload Artifact GitHub Action
+      uses: actions/upload-artifact@v3.1.1
+      with: 
+        name: Artifact
+        path: download-artifacts  
   
     - name: Docker image build
       run: |
@@ -40,16 +49,10 @@ jobs:
     - name: Generate Snyk Docker Image json report into Html format
       run: |
            npm install snyk-to-html -g
-           mkdir download-artifacts
-           cd download-artifacts
            snyk-to-html -i SnykDockerImage.json -o SnykDockerImage.html
            ls -la
            
-    - name: Upload Artifact GitHub Action
-      uses: actions/upload-artifact@v2
-      with: 
-        name: Artifact
-        path: download-artifacts
+    
      
 
     
