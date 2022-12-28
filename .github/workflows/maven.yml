@@ -50,7 +50,7 @@ jobs:
     - name: Generate Snyk Docker Image json report into Html format
       run: |
            npm install snyk-to-html -g
-           snyk-to-html -i SnykDockerImage.json -o 
+           snyk-to-html -i SnykDockerImage.json -o SnykDockerImage.html
            ls -la
     - run: mkdir DockerScan && cp SnykDockerImage.html DockerScan      
     - uses: actions/upload-artifact@v3 
