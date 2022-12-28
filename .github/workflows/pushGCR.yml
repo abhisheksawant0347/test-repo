@@ -33,7 +33,10 @@ jobs:
         env:
           IMAGE_NAME: ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} #create env called IMAGE_NAME consisted of actual name of Docker Image after we build
           PROJECT_ID: cicd-372106
-        run: docker build -t $IMAGE_NAME:latest . #build the docker image
+
+        run: |
+           mvn -B package --file pom.xml
+           docker build -t $IMAGE_NAME:latest . 
         
       - name: Configure Docker Client
         run:  |-
