@@ -29,6 +29,7 @@ jobs:
           mvn -B package --file pom.xml
           ls -la
           cd target
+          ls -la
           mkdir download-artifacts && cp /target/*.jar download-artifacts
           
     - name: Upload Artifact GitHub Action
