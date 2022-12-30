@@ -1,4 +1,4 @@
-name: Docker Image push to GCR
+name: Push to GCR 
 
 on:
  workflow_dispatch:
