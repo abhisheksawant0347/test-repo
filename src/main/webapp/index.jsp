@@ -1,6 +1,6 @@
 <html>
 <body>
-	<h1>Hello World!!!! Welcome to the DevOps Training!!!</h1>
+	<h1>Hello World!!!! Welcome to the DevOps!!!</h1>
 =======
 	<h2> This is a Test page for demonstrating CI and CD with Continuous Integration and Continuos Deployment!!!</h2>
 <form>
