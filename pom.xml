@@ -7,6 +7,11 @@
   <version>0.0.2</version>
   <name>Helloworldwebapp Maven Webapp.</name>
   <url>http://maven.apache.org</url>
+  <plugin>
+   <groupId>com.google.cloud.tools</groupId>
+   <artifactId>appengine-maven-plugin</artifactId>
+   <version>2.4.4</version>
+</plugin>
   <dependencies>
 <dependency>
   <groupId>junit</groupId>
@@ -16,6 +21,39 @@
 </dependency>
   </dependencies>
   <build>
+    <distributionManagement>
+  <snapshotRepository>
+    <id>artifact-registry</id>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/quickstart-java-repo</url>
+  </snapshotRepository>
+  <repository>
+    <id>artifact-registry</id>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/quickstart-java-repo</url>
+  </repository>
+</distributionManagement>
+
+<repositories>
+  <repository>
+    <id>artifact-registry</id>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/quickstart-java-repo</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
+</repositories>
+
+<build>
+  <extensions>
+    <extension>
+      <groupId>com.google.cloud.artifactregistry</groupId>
+      <artifactId>artifactregistry-maven-wagon</artifactId>
+      <version>2.2.0</version>
+    </extension>
+  </extensions>
+</build>
     <finalName>Helloworldwebapp</finalName>
   </build>
 </project>
