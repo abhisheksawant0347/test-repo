@@ -16,9 +16,8 @@
     <scope>test</scope>
 </dependency>
   </dependencies>
-  
-  <build>
-    <distributionManagement>
+ 
+ <distributionManagement>
   <snapshotRepository>
     <id>artifact-registry</id>
     <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworld</url>
@@ -27,10 +26,10 @@
     <id>artifact-registry</id>
     <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworld</url>
   </repository>
-</distributionManagement>
+ </distributionManagement>
 
 
-<build>
+ <build>
   <extensions>
     <extension>
       <groupId>com.google.cloud.artifactregistry</groupId>
@@ -38,8 +37,7 @@
       <version>2.2.0</version>
     </extension>
   </extensions>
-</build>
-    <finalName>Helloworldwebapp</finalName>
-  </build>
+      <finalName>Helloworldwebapp</finalName>
+ </build>
 </project>
 
