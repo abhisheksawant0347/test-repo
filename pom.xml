@@ -19,17 +19,17 @@
     <distributionManagement>
   <snapshotRepository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/quickstart-java-repo</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworld</url>
   </snapshotRepository>
   <repository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/quickstart-java-repo</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworld</url>
   </repository>
 </distributionManagement>
 <repositories>
   <repository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/quickstart-java-repo</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworld</url>
     <releases>
       <enabled>true</enabled>
     </releases>
