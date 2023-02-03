@@ -20,13 +20,26 @@
  <distributionManagement>
   <snapshotRepository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworld</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworldwebapp</url>
   </snapshotRepository>
   <repository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworld</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworldwebapp</url>
   </repository>
  </distributionManagement>
+  
+  <repositories>
+  <repository>
+    <id>artifact-registry</id>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworldwebapp</url>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>true</enabled>
+    </snapshots>
+  </repository>
+</repositories>
 
 
  <build>
