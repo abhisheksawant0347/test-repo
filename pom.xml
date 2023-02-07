@@ -8,15 +8,6 @@
   <name>Helloworldwebapp Maven Webapp.</name>
   <url>http://maven.apache.org</url>
   
-  <dependencies>
-<dependency>
-  <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-    <version>4.12</version>
-    <scope>test</scope>
-</dependency>
-  </dependencies>
- 
  <distributionManagement>
   <snapshotRepository>
     <id>artifact-registry</id>
@@ -28,7 +19,7 @@
   </repository>
  </distributionManagement>
   
-  <repositories>
+<repositories>
   <repository>
     <id>artifact-registry</id>
     <url>artifactregistry://us-central1-maven.pkg.dev/cicd-372106/Helloworldwebapp</url>
@@ -40,8 +31,7 @@
     </snapshots>
   </repository>
 </repositories>
-
-
+ 
  <build>
      <pluginManagement>
       <plugins>
