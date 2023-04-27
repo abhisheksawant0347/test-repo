@@ -11,9 +11,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
     - name: Set up JDK 11
-      run: |
+      run: | 
+       cd /home/runner/
+       mkdir -p .ssh/known_hosts
+       cd /home/runner/.ssh/known_hosts
+       pwd
        ls -la
        cd
        pwd
