@@ -21,8 +21,8 @@ jobs:
        cd
        pwd
        cd /home/runner/ && ls -la
-       cd .ssh
-       sshkeygen -r rsa
+    
+    
        
        
       
