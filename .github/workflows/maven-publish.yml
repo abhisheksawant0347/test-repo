@@ -1,0 +1,24 @@
+
+name: Maven Package
+
+on:
+ push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      run: |
+       ls -la
+       cd
+       pwd
+       cd /home/runner/ && ls -la
+       whereis .ssh
+       
+      
+    
