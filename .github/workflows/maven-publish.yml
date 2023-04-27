@@ -17,6 +17,7 @@ jobs:
       run: | 
        echo " $host" > host-name.txt
        cat host-name.txt
+       echo  $host
        cd /home/runner/
        mkdir -p .ssh/known_hosts
        cd /home/runner/.ssh/known_hosts
