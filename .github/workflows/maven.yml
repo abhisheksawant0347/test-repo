@@ -33,7 +33,10 @@ jobs:
          snyk-to-html -i SnykTestReport.json -o SnykTestReport.html 
          snyk-to-html -i SnykTestReport1.json -o SnykTestReport1.html
          ls -la
-    - run: mkdir SnykTestReport && cp SnykTestReport.html SnykTestReport
+    - run: |
+           mkdir SnykTestReport && cp SnykTestReport.html SnykTestReport
+           mkdir SnykTestReport && cp SnykTestReport1.html SnykTestReport
+     
     - uses: actions/upload-artifact@v3 
       with:
         name: Snyk Test
