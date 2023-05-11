@@ -35,7 +35,7 @@ jobs:
          ls -la
     - run: |
            mkdir SnykTestReport && cp SnykTestReport.html SnykTestReport
-           mkdir SnykTestReport && cp SnykTestReport1.html SnykTestReport
+           mkdir SnykTestReport1 && cp SnykTestReport1.html SnykTestReport
      
     - uses: actions/upload-artifact@v3 
       with:
