@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '1 * * * *'
+    - cron: '* * * * *'
 
 jobs:
   analyze:
@@ -64,9 +64,11 @@ jobs:
       with:
         category: "/language:${{matrix.language}}"
         
-    - name: Upload result to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v2
+    - run: mkdir codeQL_Scan_report && cp /home/runner/work/Python-Helloworld/results/*.sarif codeQL_Scan_report
+    - name: upload artifacts
+      uses: actions/upload-artifact@v3
       with:
-        sarif_file: codeQL.html
+          name: Package
+          path: codeQL_Scan_report  
         
         
