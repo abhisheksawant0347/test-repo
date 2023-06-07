@@ -11,18 +11,18 @@
  <distributionManagement>
   <snapshotRepository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/helloworldwebapp</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/helloworldwebapp1</url>
   </snapshotRepository>
   <repository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/helloworldwebapp</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/Helloworldwebapp1</url>
   </repository>
  </distributionManagement>
   
 <repositories>
   <repository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/helloworldwebapp</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/Helloworldwebapp1</url>
     <releases>
       <enabled>true</enabled>
     </releases>
@@ -31,7 +31,6 @@
     </snapshots>
   </repository>
 </repositories>
- 
  <build>
      <pluginManagement>
       <plugins>
@@ -49,6 +48,7 @@
         <version>3.0.0</version>
       </plugin>
     </plugins>
+   
   <extensions>
     <extension>
       <groupId>com.google.cloud.artifactregistry</groupId>
