@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,4 +19,20 @@ spec:
       - name: MyApplication
         image: gcr.io/cicd-gke-388407/myapp:latest
         ports:
-        - containerPort: 80
+        - containerPort: 80    
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: my-app-svc
+ labels:
+   app: my-app
+spec:
+  selector:
+    app: my-app
+  type: NodePort
+  ports:
+  - nodePort: 30082
+    port: 80
+    targetPort: 80
+        
