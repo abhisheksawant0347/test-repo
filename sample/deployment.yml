@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: my-app-deployment
   labels:
-    app: my-nginx1
+    app: my-app
 spec:
   selector:
     matchLabels:
-      app: my-nginx1
+      app: my-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: my-nginx1
+        app: my-app
     spec:
       containers:
-      - name: nginx
-        image: nginx:latest
+      - name: MyApplication
+        image: gcr.io/cicd-gke-388407/app:latest
         ports:
         - containerPort: 80
