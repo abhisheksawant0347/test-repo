@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: MyApplication
-        image: gcr.io/cicd-gke-388407/app:latest
+        image: gcr.io/cicd-gke-388407/myapp:latest
         ports:
         - containerPort: 80
