@@ -14,7 +14,7 @@ steps:
     - --filename=sample/deployment.yml
     - --image=gcr.io/cicd-gke-388407/myapp:latest
     - --location=us-central1
-    - --cluster=cluster1
+    - --cluster=app-cluster1
 options:
    logging: CLOUD_LOGGING_ONLY
 
