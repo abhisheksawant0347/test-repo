@@ -16,7 +16,7 @@ spec:
         app: my-app
     spec:
       containers:
-      - name: MyApplication
+      - name: myapplication
         image: gcr.io/cicd-gke-388407/myapp:latest
         ports:
         - containerPort: 80    
@@ -32,7 +32,7 @@ spec:
     app: my-app
   type: NodePort
   ports:
-  - nodePort: 30082
+  - nodePort: 30060
     port: 80
     targetPort: 80
         
