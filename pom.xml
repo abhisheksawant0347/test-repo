@@ -15,14 +15,14 @@
   </snapshotRepository>
   <repository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/Helloworldwebapp1</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/helloworldwebapp1</url>
   </repository>
  </distributionManagement>
   
 <repositories>
   <repository>
     <id>artifact-registry</id>
-    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/Helloworldwebapp1</url>
+    <url>artifactregistry://us-central1-maven.pkg.dev/cicd-gke-388407/helloworldwebapp1</url>
     <releases>
       <enabled>true</enabled>
     </releases>
