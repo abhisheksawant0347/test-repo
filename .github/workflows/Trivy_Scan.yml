@@ -42,5 +42,11 @@ jobs:
           format: 'table'
           exit-code: '1'
           ignore-unfixed: true
-          vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+          output: Trivay-Scan.html
+          
+      - run: mkdir DockerScan && cp Triavy-Scan.html Docker-Image-Scan     
+      - uses: actions/upload-artifact@v3 
+        with:
+         name: Docker Image report
+         path: Docker-Image-Scan
