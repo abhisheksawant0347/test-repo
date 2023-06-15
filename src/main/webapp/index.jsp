@@ -4,7 +4,8 @@
 =====================================================
 	<h2> This is cloud build with GKE and cloud Run deployment!!!</h2>
   </h2> CICD with Cloud build with GKE cluster and Cloud run ...
-	Deploying sample java based application into GEK cluster	</h2>
+	Deploying sample java based application into GEK cluster
+	This is new verison of cloud run </h2>
 	
 </center>
 </body>
