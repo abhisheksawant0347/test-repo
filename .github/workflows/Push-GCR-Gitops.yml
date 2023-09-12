@@ -1,0 +1,55 @@
+name: Push to GCR 
+
+on:
+ workflow_dispatch:
+   inputs:
+     DockerImageName:
+       description: 'Docker image name'
+       default: 'Gitops'
+       required: true 
+     tag:
+       description: Docker tag
+       default: latest
+       required: true
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest 
+    permissions: 
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1 
+      - name: Login to GCR
+        env:
+          PROJECT_ID: gcp-project-394013
+        uses: google-github-actions/setup-gcloud@v0.3.0 
+        with:
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }} 
+          project_id: ${{ env.PROJECT_ID }} 
+          export_default_credentials: true
+          
+      - name: Build Docker Image
+        env:
+          IMAGE_NAME: ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} #create env called IMAGE_NAME consisted of actual name of Docker Image after we build
+          PROJECT_ID: gcp-project-394013
+
+        run: |
+           mvn -B package --file pom.xml
+           ls -la
+           docker build -t $IMAGE_NAME . 
+        
+      - name: Configure Docker Client
+        run:  |-
+          gcloud auth configure-docker --quiet
+        
+      - name: Push Docker Image to Container Registry GCR
+        env: 
+          IMAGE_NAME: ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}
+          PROJECT_ID: gcp-project-394013
+        #tag docker image to gcr image format then push to gcr
+        run: |-
+          docker tag $IMAGE_NAME gcr.io/$PROJECT_ID/$IMAGE_NAME
+          docker push gcr.io/$PROJECT_ID/$IMAGE_NAME
+  
+    
