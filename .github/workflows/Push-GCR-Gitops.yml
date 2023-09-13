@@ -5,7 +5,7 @@ on:
    inputs:
      DockerImageName:
        description: 'Docker image name'
-       default: 'Gitops'
+       default: 'gitops'
        required: true 
      tag:
        description: Docker tag
