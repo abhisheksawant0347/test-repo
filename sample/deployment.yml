@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: my-application
-        image: gcr.io/cicd-gke-388407/myapp:latest
+        image:  gcr.io/alert-outlet-402706/gitops:latest
         ports:
         - containerPort: 8080    
 ---
