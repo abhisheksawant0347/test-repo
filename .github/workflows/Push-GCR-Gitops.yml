@@ -1,4 +1,4 @@
-name: Push docker image into GCR 
+name: Buikd and Push docker image into GCR 
 
 on:
  workflow_dispatch:
@@ -12,6 +12,51 @@ on:
        default: latest
        required: true
 jobs:
+  Build-Docker-Images:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      continue-on-error: true     
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: |
+          mvn -B package --file pom.xml
+          ls -la
+          cd target
+          ls -la
+          
+    - run: mkdir Artifact-Package && cp target/*.war Artifact-Package
+    - uses: actions/upload-artifact@v3
+      with:
+        name: Package
+        path: Artifact-Package  
+     
+    - name: Docker image build
+      run: |
+          docker build -t ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} .
+          docker images
+    - name: Snyk Login
+      run: |
+           npm install snyk -g
+           snyk auth ${{ secrets.SNYK_TOKEN }}
+           snyk container test ${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}} --json-file-output=SnykDockerImage.json
+      continue-on-error: true   
+    - name: Generate Snyk Docker Image json report into Html format
+      run: |
+           npm install snyk-to-html -g
+           snyk-to-html -i SnykDockerImage.json -o SnykDockerImage.html
+           ls -la
+    - run: mkdir DockerScan && cp SnykDockerImage.html DockerScan      
+    - uses: actions/upload-artifact@v3 
+      with:
+        name: Docker report
+        path: DockerScan
+
   Deploy:
     runs-on: ubuntu-latest 
     permissions: 
