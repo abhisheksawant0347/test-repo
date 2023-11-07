@@ -1,4 +1,4 @@
-name: Buikd and Push docker image into GCR 
+name: Build and Push docker image into GCR 
 
 on:
  workflow_dispatch:
