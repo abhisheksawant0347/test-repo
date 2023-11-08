@@ -1,9 +1,7 @@
 
 name: Maven Package for master branch
 
-on:
- push:
-    branches:  
+
     
 
 jobs:
