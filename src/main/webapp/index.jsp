@@ -4,7 +4,7 @@
 =====================================================
 	<h2> This is Gitops, ArgoCD and Kubernetes Deployment!!!</h2>
   </h2> This is POC for Gitops implementation with ArgoCD
-	Application version is 4.0 </h2>
+	Application version is 5.0 </h2>
 	
 </center>
 </body>
