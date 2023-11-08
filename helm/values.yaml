@@ -1,0 +1,11 @@
+
+replicaCount: 3
+
+tag: latest
+
+service:
+  type: nodePort
+  port: 30081
+
+
+
