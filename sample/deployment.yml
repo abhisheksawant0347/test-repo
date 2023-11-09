@@ -18,9 +18,9 @@ spec:
       containers:
       - name: my-application
         image:  gcr.io/alert-outlet-402706/gitops:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 8080
-      imagePullPolicy: Always
+        - containerPort: 8080 
 ---
 apiVersion: v1
 kind: Service
