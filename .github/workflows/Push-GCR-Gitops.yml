@@ -104,7 +104,7 @@ jobs:
       - name: Update docker image 
         run: |-
             ls -la
-            git clone $git_repo
+            git clone https://github.com/abhisheksawant0347/Helloworld_java.git
             cd Helloworld_java
             ls -la
             cd sample
