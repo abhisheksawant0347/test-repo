@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: my-application
+        image:  gcr.io/alert-outlet-402706/gitops:latest
+        ports:
+        - containerPort: 8080
+      imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: myapp-svc
+ labels:
+   app: my-app
+spec:
+  selector:
+    app: my-app
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30082
