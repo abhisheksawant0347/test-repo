@@ -108,7 +108,7 @@ jobs:
             cd Helloworld_java
             ls -la
             cd sample
-            sed "s/gcr.io/alert-outlet-402706/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/gcr.io/alert-outlet-402706/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/g" deployment.yaml
+            sed "s/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/{{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/g" deployment.yaml
             git status
             git log
             ls -la
