@@ -112,7 +112,7 @@ jobs:
             git status
             git log
             ls -la
-            git add deployment.yaml
+            git add deployment.yml
             git commit -m "updated deployement.yml file"
             git push origin master
             
