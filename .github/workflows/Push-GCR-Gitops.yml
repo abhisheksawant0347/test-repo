@@ -115,7 +115,7 @@ jobs:
             git add deployment.yml
             git commit -m "Updated yml file"
             git remote -v
-            git push 
+            git push origin master
             git 
             ls -la
             cat deployment.yml
