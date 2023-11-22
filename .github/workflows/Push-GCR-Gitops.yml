@@ -110,6 +110,12 @@ jobs:
             ls -la
             cd sample
             sed -i 's/gitops:latest/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/g' deployment.yml
+            git add deployment.yml
+            git commit -m "Updated yml file"
+            git remote add origin https://github.com/abhisheksawant0347/Helloworld_java.git
+            git remote -v
+            git push 
+            git 
             ls -la
             cat deployment.yml
             cd
