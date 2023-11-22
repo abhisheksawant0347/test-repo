@@ -109,8 +109,7 @@ jobs:
             cd Helloworld_java
             ls -la
             cd sample
-            echo "${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}"
-            sed -ri "s/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/g" deployment.yml
+            sed -i 's/gitops:latest/${{github.event.inputs.DockerImageName}}:${{github.event.inputs.tag}}/g' deployment.yml
             git status
             ls -la
             cat deployment.yml
